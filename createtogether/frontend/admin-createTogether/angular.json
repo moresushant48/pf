@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "admin-createTogether"
+    }
+  },
+  "defaultProject": "admin-createTogether",
+  "cli": {
+    "analytics": false
+  }
 }
