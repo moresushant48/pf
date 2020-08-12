@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "CreateTogether"
+    }
+  },
+  "defaultProject": "CreateTogether",
+  "cli": {
+    "analytics": false
+  }
 }
