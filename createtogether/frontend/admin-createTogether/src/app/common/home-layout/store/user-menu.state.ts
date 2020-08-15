@@ -1,11 +1,11 @@
-import {Action, Selector, State, StateContext} from '@ngxs/store';
-import {ClearActiveMenuItem, GetMenuList, SetActiveMenuItem, SetCurrentMenu} from './user-menu.action';
-import {UserProfileService} from '../services/user-profile.service';
-import {ApiLoadingError, ApiLoadingStart, ApiLoadingSuccess} from '../../../store/api.actions';
-import {catchError, mergeMap, switchMap, tap} from 'rxjs/operators';
-import {Utilities} from '../../../utilities';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { ClearActiveMenuItem, GetMenuList, SetActiveMenuItem, SetCurrentMenu } from './user-menu.action';
+import { UserProfileService } from '../services/user-profile.service';
+import { ApiLoadingError, ApiLoadingStart, ApiLoadingSuccess } from '../../../store/api.actions';
+import { catchError, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { Utilities } from '../../../utilities';
 import produce from 'immer';
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 
 export interface UserMenuActiveStateModel {
   id: number;
@@ -42,14 +42,14 @@ export interface UserMenuModel {
     list: [],
     activeMenuItem: {
       hasSubMenu: false,
-      subMenu:[],
-      route:'',
-      position:0,
-      permissions:[],
-      hasParent:false,
+      subMenu: [],
+      route: '',
+      position: 0,
+      permissions: [],
+      hasParent: false,
       iconName: '',
       displayName: '',
-      id:0
+      id: 0
     }
   },
 
@@ -67,7 +67,7 @@ export class UserMenuState {
           draft.activeMenu = new Array<UserMenuActiveStateModel>();
           draft.list = new Array<UserMenuStateModel>();
           resp.data.forEach((item: UserMenuStateModel) => {
-            let listItem:UserMenuStateModel = {
+            let listItem: UserMenuStateModel = {
               id: item.id,
               displayName: item.displayName,
               hasSubMenu: item.hasSubMenu,
@@ -100,15 +100,15 @@ export class UserMenuState {
       }),
       catchError(err => {
         console.log(err);
-        return ctx.dispatch(new ApiLoadingError('get-menu',Utilities.handleError(err)))
+        return ctx.dispatch(new ApiLoadingError('get-menu', Utilities.handleError(err)))
       })
     );
   }
 
   @Action(SetCurrentMenu)
-  setCurrentMenu(ctx: StateContext<UserMenuModel>, action: SetCurrentMenu){
+  setCurrentMenu(ctx: StateContext<UserMenuModel>, action: SetCurrentMenu) {
     const currentState = ctx.getState();
-    if(action.goBack){
+    if (action.goBack) {
       const activeMenu = currentState.list.map((item) => {
         return {
           id: item.id,
@@ -127,10 +127,10 @@ export class UserMenuState {
       });
       return;
     }
-    const menuItem = currentState.list.find(x=>x.id == action.item.id);
-    if(menuItem.hasSubMenu) {
+    const menuItem = currentState.list.find(x => x.id == action.item.id);
+    if (menuItem.hasSubMenu) {
       const activeMenu = menuItem.subMenu.map((item) => {
-        return  {
+        return {
           id: item.id,
           hasSubMenu: item.hasSubMenu,
           displayName: item.displayName,
@@ -157,17 +157,17 @@ export class UserMenuState {
   }
 
   @Action(ClearActiveMenuItem)
-  clearActiveMenuItem(ctx: StateContext<UserMenuModel>){
+  clearActiveMenuItem(ctx: StateContext<UserMenuModel>) {
     const activeMenuItem = {
       hasSubMenu: false,
-      subMenu:[],
-      route:'',
-      position:0,
-      permissions:[],
-      hasParent:false,
+      subMenu: [],
+      route: '',
+      position: 0,
+      permissions: [],
+      hasParent: false,
       iconName: '',
       displayName: '',
-      id:0
+      id: 0
     } as UserMenuActiveStateModel;
 
     ctx.patchState({

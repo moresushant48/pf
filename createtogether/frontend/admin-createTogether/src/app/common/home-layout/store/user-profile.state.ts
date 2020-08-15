@@ -1,11 +1,11 @@
-import {Action, Selector, State, StateContext} from "@ngxs/store";
-import {Injectable} from "@angular/core";
-import {UserProfile} from "./user-profile.actions";
-import {ApiLoadingError, ApiLoadingStart, ApiLoadingSuccess} from "../../../store/api.actions";
-import {catchError, mergeMap, switchMap, tap} from "rxjs/operators";
-import produce from "immer";
-import {Utilities} from "../../../utilities";
-import {UserProfileService} from "../services/user-profile.service";
+import {Action, Selector, State, StateContext} from '@ngxs/store';
+import {Injectable} from '@angular/core';
+import {UserProfile} from './user-profile.actions';
+import {ApiLoadingError, ApiLoadingStart, ApiLoadingSuccess} from '../../../store/api.actions';
+import {catchError, mergeMap, switchMap, tap} from 'rxjs/operators';
+import produce from 'immer';
+import {Utilities} from '../../../utilities';
+import {UserProfileService} from '../services/user-profile.service';
 
 export interface UserProfileModel {
 
@@ -21,12 +21,12 @@ export interface UserProfileModel {
 @State<UserProfileModel>({
   name: 'profile',
   defaults: {
-    id: "",
-    fullName: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    mobile: "",
+    id: '',
+    fullName: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    mobile: '',
     userType: 0
   }
 })
