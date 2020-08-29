@@ -1,0 +1,36 @@
+
+<form class="form" [formGroup]="formGroup"
+(ngSubmit)="onFormSubmit()"
+[name]="name"
+(reset)="onFormReset()"
+[id]="id"
+>
+
+<div class="alert alert-danger" role="alert" *ngIf="!isValid  ">
+<ul class="list-unstyled">
+  <li *ngFor="let error of errorMessages">
+  {{error.propertyName}}:  {{error.errorMessage}}
+  </li>
+</ul>
+</div>
+
+<ng-content></ng-content>
+
+<!-- Grid row -->
+<div class="form-group row" *ngIf="showActionButtons">
+<div class="col-sm-12 d-flex flex-row align-items-stretch">
+<button type="button" class="mr-auto" mdbBtn *ngIf="showCloseButton" (click)="onFormCloseClick()">
+  Close
+</button>
+<span class="mr-auto" *ngIf="!showCloseButton"></span>
+<button type="reset" class="mr-10"  mdbBtn *ngIf="showResetButton" [disabled]="displayLoading">
+  Reset
+</button>
+<button type="submit" color="primary"  mdbBtn [disabled]="displayLoading">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="displayLoading" ></span>
+  Save
+</button>
+</div>
+</div>
+<!-- Grid row -->
+</form>

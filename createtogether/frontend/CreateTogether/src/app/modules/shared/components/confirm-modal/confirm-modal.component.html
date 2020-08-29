@@ -1,1 +1,19 @@
-<p>confirm-modal works!</p>
+<div class="modal-body prl-100">
+    <div class="row d-flex justify-content-center align-items-center">
+        <h2 class="">
+            <!-- <fa-icon [icon]="iconType" [class]="textType"></fa-icon> -->
+        </h2>
+        <div class="d-flex flex-column align-items-stretch pt-3 mx-4 ml-auto mr-auto " *ngIf="requiredResponse">
+            <label for="response" class="messageFont"> {{message}} </label>
+            <input mdbInput id="response" type="text" [(ngModel)]="response" name="response"
+                [placeholder]="expectedResponse"/>
+        </div>
+        <p class="pt-3 mx-4 ml-auto mr-auto messageFont" *ngIf="!requiredResponse"> {{message}} </p>
+
+        <a type="button" mdbBtn [color]="type" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+            (click)="onYes()">Yes</a>
+        <a type="button" mdbBtn [color]="type" outline="true" class="waves-light" mdbWavesEffect data-dismiss="modal"
+            (click)="onCancel()">Cancel</a>
+
+    </div>
+</div>

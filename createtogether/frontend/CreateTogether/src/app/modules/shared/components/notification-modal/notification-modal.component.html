@@ -1,1 +1,18 @@
-<p>notification-modal works!</p>
+
+<div class="modal-body prl-100">
+    <div class="row d-flex justify-content-center align-items-center">
+      <h2 class="">
+        <!-- <fa-icon [icon]="iconType" [class]="textType"></fa-icon> -->
+      </h2>
+  
+      <p class="pt-3 mx-4 ml-auto mr-auto messageFont" *ngIf="errors.length<=0" > {{message}} </p>
+      <ul class="pt-3 mx-4 ml-auto mr-auto list-unstyled" *ngIf="errors.length>0">
+        <li *ngFor="let e of errors" class="messageFont">{{e.propertyName}}: {{e.errorMessage}}</li>
+      </ul>
+  
+      <a type="button" mdbBtn [color]="type" size="md" outline="true" class="waves-light" mdbWavesEffect
+         data-dismiss="modal" (click)="modalRef.hide()">Ok, thanks</a>
+    </div>
+  </div>
+  
+  

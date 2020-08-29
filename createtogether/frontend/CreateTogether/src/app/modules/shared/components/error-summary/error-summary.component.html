@@ -1,1 +1,7 @@
-<p>error-summary works!</p>
+<div class="row" *ngIf="!isAPISuccess  ">
+    <div class="col-12 text-danger">
+      <ul class="list-unstyled">
+        <li *ngFor="let error of errors">{{error.errorMessage}}</li>
+      </ul>
+    </div>
+  </div>
